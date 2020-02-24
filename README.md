@@ -28,8 +28,8 @@ This arrangement leaves columns a, c, d and e available for connection to header
 
 The HiLetgo NodeMCU board does not exhibit pin labels on the top side. We used the following table to map the header pins to the rows and columns on the breadboard. Left and right are defined viewing the breadboard from above, with row 1 at the top and the NodeMCU at the bottom, closest to the observer. A letter "L" after a row number denotes the left-hand side of the device; an "R" denotes the right-hand side.
 
-"(T)" in the Function column indicates GPIO pins that we used for touch sensing.  "(S)" in the Function column indicates GPIO pins that we used to switch current on and off, in this case to light up our LEDs. "(TX)" and "(RX)" refer to the transmit and receive pins, respectively, reserved for future use in serial communications.
-It also meant that we could make use of columns c, d and e on the left side and columns f, g and h on the right.
+"(T)" in the Function column indicates GPIO pins that we used for touch sensing.  "(S)" in the Function column indicates GPIO pins that we used to switch current on and off, in this case to light up our LEDs. "(TX)" and "(RX)" refer to the transmit and receive pins, respectively, reserved for future use in serial communications. Generally speaking most of the GPIO pins we did not use have got special functions or limitations on the HiLetgo NoceMCU-32s board. We chose to avoid using those pins.  
+
 
 | Function   | Pin Left | Pin Right | Function   |
 | ---------- |:--------:|:---------:| ---------- |
@@ -87,3 +87,28 @@ When all goes well, the Arduino software performs a three-step procedure when th
 This sequence is familiar and automatic for users accustomed to programming many types of boards with the Arduino software. However, the ESP32 throws an extra wrinkle into the procedure.
 
 The HiLetgo NodeMCU-32S requires the user to press a button on the device at the point of Step 2, when the Arduino software begins trying to connect. The button is labeled "IO0". The text is so tiny that it almost looks like a number, "100". The button is near the lower-right corner of the device.  Hold the button down until the Arduino software indicates that it has completed the connection and begun the upload process. The upload will continue even if you release the button after the connection is established.
+
+### Build a diorama
+The simple idea here is to install the earring backs and LEDs on a poster. Run wire pairs from the LEDs back to the LED pins on the device. Run single wires from the earring backs to the corresponding touch pins on the device.
+
+Imagine a poster having eight items of interest. An LED could be placed near each item. Along one side of the poster are eight cards, each giving information about one of the items of interest. An earring back installed on a card activates the LED associated with that card's item on the poster.
+
+### Powering up the diorama
+The device can be powered via a USB connection with a computer. Alternatively, it can be powered by delivering 3.3 volt DC current to the pin 45L and connecting pin 45R to ground. We placed a breadboard power adapter on our device that accepts a 9-volt battery and converts the power down to 3.3 volts for the purpose.
+
+The firmware version presently available in this repo starts up in this sequence:
+
+1. All eight LEDs are turned on in successive order.
+2. Then all eight LEDs are turned off in succession.
+3. Then, some or all of the LEDs might turn on a second time. I am not sure why.
+4. The user can turn off the LEDs at this point by touching any one of the earring backs. Or, the user can wait ten seconds for the LEDs to time out and turn off automatically.
+
+Sometimes the LEDs will all light up again the first time the user touches one of the earring backs. Again, waiting 10 seconds will allow the LEDs to time out and turn off.
+
+### Operating the diorama
+After the startup sequence has finished (and its admitted weirdness settles down) the operation is very simple.
+
+* Touch a sensor. The LED it is paired with turns on.
+* Touch the sensor again. The LED turns off.
+* Maintain continuous contact with the sensor. The LED blinks.
+* Leave an LED turned on. It will time out and turn off after 10 seconds.
