@@ -22,7 +22,7 @@ Components of the prototype described here include:
 ### Assembly
 The HiLetgo NodeMCU development board is among the narrowest form factors we evaluated. It provides 38 pinouts on male headers -- 19 on each side -- correctly spaced to mount securely on a breadboard. Locate a position for the device that will leave a row of pinholes open on the breadboard adjacent to each side of the NodeMCU.
 
-For example, our breadboard had 63 rows of pins, each row having a group of 5 columns of pinholes (numbered a through e) on the left side and another group of 5 columns (numbered f through j) on the right side. The two groups of columns are separated and isolated from each other. We planned our project to seat the NodeMCU board's header pins into columns b and i of rows 45 through 64. In other words, we centered it on the bottom rows of the breadboard.
+For example, our breadboard had 63 rows of pins, each row having a group of 5 columns of pinholes (numbered a through e) on the left side and another group of 5 columns (numbered f through j) on the right side. The two groups of columns are separated and isolated from each other. We planned our project to seat the NodeMCU board's header pins into columns b and i of rows 45 through 63. In other words, we centered it on the bottom rows of the breadboard.
 
 This arrangement leaves columns a, c, d and e available for connection to header pins on the left-hand side of the NodeMCU board. Likewise, columns f, g, h and j are accessible for connectio to header pins on the right-hand side.
 
